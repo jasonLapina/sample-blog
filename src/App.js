@@ -1,11 +1,15 @@
-import { Box } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import "./App.css";
-import Hero from "./components/Hero";
+import MainTop from "./components/MainTop";
+import MostPlayed from "./components/MostPlayed";
 
 function App() {
   return (
     <Box maxW='1200px' mx='auto' py='80px'>
-      <Hero />
+      <VStack align='normal' gap='70px'>
+        <MainTop />
+        <MostPlayed />
+      </VStack>
     </Box>
   );
 }

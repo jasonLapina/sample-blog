@@ -14,19 +14,12 @@ function NewsItem(props) {
 
   return (
     <Box {...props}>
-      <Box
-        overflow='hidden'
-        pos='relative'
-        w='390px'
-        h='193px'
-        borderRadius='10px'
-        mb='10px'
-      >
+      <Box overflow='hidden' pos='relative' borderRadius='10px' mb='10px'>
         <Skeleton isLoaded={loadSkeleton}>
           <Image src={data.thumbnail.url} />
           <Text
             pos='absolute'
-            borderRadius='10px'
+            borderRadius='0 10px 0 0'
             py='5px'
             px='15px'
             bgColor='#CA2020'
