@@ -7,7 +7,7 @@ function NewsText({ item }) {
   const cutSummary = summary.slice(0, 90);
 
   return (
-    <Box borderBottom='solid 2px gray' pb='10px'>
+    <Box borderBottom='solid 2px #D1D1D1' pb='10px'>
       <HStack cursor='pointer'>
         <Icon as={HiChatBubbleBottomCenterText} />
         <Text fontWeight='600' textDecor='underline'>

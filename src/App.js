@@ -4,6 +4,7 @@ import MainTop from "./components/MainTop";
 import MostPlayed from "./components/MostPlayed";
 import Crypto from "./components/Crypto";
 import Header from "./components/UI/Header";
+import FAQs from "./components/FAQs";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <MainTop />
           <MostPlayed />
           <Crypto />
+          <FAQs />
         </VStack>
       </Box>
     </>
