@@ -8,10 +8,9 @@ import NewsText from "./News/NewsText";
 
 function MainTop() {
   const initURL =
-    "https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=12";
+    "https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=12&pagination[page]=1";
   const fetchURL = async (url) => {
     const res = await axios.get(url);
-
     return res.data;
   };
 
@@ -28,8 +27,8 @@ function MainTop() {
   );
 
   if (isLoading) return <div />;
-  const news = data.pages.flatMap((arr) => arr.data);
-
+  const news = data.pages.flatMap((arr) => arr.data).reverse();
+  console.log(news);
   return (
     <Grid gridTemplateColumns='6.6fr 3.4fr' columnGap='40px'>
       <Box>
