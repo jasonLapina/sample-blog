@@ -13,7 +13,7 @@ function NewsItem(props) {
   }, []);
 
   return (
-    <Box {...props}>
+    <Box {...props} cursor='pointer'>
       <Box overflow='hidden' pos='relative' borderRadius='10px' mb='10px'>
         <Skeleton isLoaded={loadSkeleton}>
           <Image src={data.thumbnail.url} />

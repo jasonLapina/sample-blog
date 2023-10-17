@@ -1,9 +1,10 @@
-import { Box, Grid, VStack, Text } from "@chakra-ui/react";
+import { Box, Grid, VStack, Text, HStack, Icon } from "@chakra-ui/react";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
-import NewsItem from "./News/NewsItem";
+import { HiChatBubbleBottomCenterText } from "react-icons/hi2";
 import NewsHeading from "./UI/NewsHeading";
 import NewsList from "./News/NewsList";
+import NewsText from "./News/NewsText";
 function MainTop() {
   const initURL =
     "https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=12";
@@ -34,10 +35,13 @@ function MainTop() {
       </Box>
       <Box>
         <NewsHeading />
-        <VStack>
-          {news.reverse().map((item) => (
-            <Text key={item.slug}>{item.summary}</Text>
-          ))}
+        <VStack gap='20px'>
+          {news
+            .reverse()
+            .slice(0, 6)
+            .map((item) => (
+              <NewsText item={item} key={item.summary} />
+            ))}
         </VStack>
       </Box>
     </Grid>
