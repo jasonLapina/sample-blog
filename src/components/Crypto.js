@@ -1,7 +1,29 @@
-import { Box, Grid, Skeleton, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Grid,
+  HStack,
+  Image,
+  Skeleton,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import NewsHeading from "./UI/NewsHeading";
 function Crypto() {
   const sideNewsArr = Array.from({ length: 12 });
+
+  const mainNews = [
+    {
+      logo: "/microgaming.png",
+    },
+    {
+      logo: "/netent.png",
+    },
+    {
+      logo: "/playtech.png",
+    },
+  ];
 
   return (
     <Grid gridTemplateColumns='6.6fr 3.4fr' gap='40px'>
@@ -20,6 +42,34 @@ function Crypto() {
             software providers below.
           </Text>
         </NewsHeading>
+        <HStack justify='center' gap='40px' alignItems='start'>
+          {mainNews.map((item) => (
+            <Box key={item.logo}>
+              <Image mx='auto' aspectRatio='1/1' h='240px' src={item.logo} />
+              <Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
+                iste rerum. Natus suscipit blanditiis numquam similique ducimus
+                corporis quibusdam possimus eos. Dolores, iste vitae optio
+                cupiditate distinctio natus doloribus. Dicta.
+              </Text>
+              <Center>
+                <Button
+                  borderRadius='5px'
+                  p='15px'
+                  bgColor='#CA2020'
+                  color='white'
+                  mt='10px'
+                  w='100%'
+                  _hover={{
+                    opacity: 0.8,
+                  }}
+                >
+                  Read More
+                </Button>
+              </Center>
+            </Box>
+          ))}
+        </HStack>
       </Box>
       <Box>
         <NewsHeading />
