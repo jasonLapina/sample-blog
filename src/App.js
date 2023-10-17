@@ -2,6 +2,7 @@ import { Box, VStack } from "@chakra-ui/react";
 import "./App.css";
 import MainTop from "./components/MainTop";
 import MostPlayed from "./components/MostPlayed";
+import Crypto from "./components/Crypto";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <VStack align='normal' gap='70px'>
         <MainTop />
         <MostPlayed />
+        <Crypto />
       </VStack>
     </Box>
   );

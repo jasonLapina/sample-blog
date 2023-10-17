@@ -28,7 +28,7 @@ function MainTop() {
 
   if (isLoading) return <div />;
   const news = data.pages.flatMap((arr) => arr.data).reverse();
-  console.log(news);
+
   return (
     <Grid gridTemplateColumns='6.6fr 3.4fr' columnGap='40px'>
       <Box>
@@ -57,7 +57,7 @@ function MainTop() {
             .reverse()
             .slice(0, 6)
             .map((item) => (
-              <NewsText item={item} key={item.summary} />
+              <NewsText item={item} key={item.id} />
             ))}
         </VStack>
       </Box>

@@ -5,7 +5,7 @@ function NewsList(props) {
   return (
     <Grid gap='30px' {...props}>
       {news.map((item, i) => (
-        <NewsItem data={item} key={item.title + i} />
+        <NewsItem data={item} key={item.id} />
       ))}
     </Grid>
   );

@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-function NewsHeading() {
+function NewsHeading({ children }) {
   return (
     <Heading
       mb='20px'
@@ -8,7 +8,7 @@ function NewsHeading() {
       borderBottom='3px solid black'
       paddingBottom='15px'
     >
-      News
+      News {children}
     </Heading>
   );
 }
