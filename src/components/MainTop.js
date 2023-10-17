@@ -18,7 +18,10 @@ function MainTop() {
 
   return (
     <Box>
-      <NewsList news={data} minItemW='350' />
+      <NewsList
+        news={data}
+        gridTemplateColumns='repeat(auto-fit,minmax(350px, 1fr))'
+      />
     </Box>
   );
 }

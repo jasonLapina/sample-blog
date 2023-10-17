@@ -4,6 +4,8 @@ import { HiChatBubbleBottomCenterText } from "react-icons/hi2";
 function NewsText({ item }) {
   const { title, summary } = item;
 
+  const cutSummary = summary.slice(0, 90);
+
   return (
     <Box borderBottom='solid 2px gray' pb='10px'>
       <HStack cursor='pointer'>
@@ -12,7 +14,9 @@ function NewsText({ item }) {
           {title}
         </Text>
       </HStack>
-      <Text color='gray'>{summary}</Text>
+      <Text color='gray'>
+        {summary.length < 90 ? summary : `${cutSummary} ...`}
+      </Text>
     </Box>
   );
 }
