@@ -1,7 +1,23 @@
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
-import { Box, HStack, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  useMediaQuery,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Button,
+  InputGroup,
+  Input,
+  InputRightElement,
+} from "@chakra-ui/react";
 function Header() {
   const [isMD] = useMediaQuery("(min-width: 768px)");
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
       pos='sticky'
@@ -32,7 +48,30 @@ function Header() {
         )}
         {!isMD && (
           <Box fontSize='24px' lineHeight='24px'>
-            <HamburgerIcon />
+            <HamburgerIcon cursor='pointer' onClick={onOpen} />
+            <Drawer isOpen={isOpen} onClose={onClose} placement='right'>
+              <DrawerOverlay />
+              <DrawerContent>
+                <DrawerCloseButton />
+                <DrawerHeader>
+                  <Button
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      onClose();
+                    }}
+                    variant='unstyled'
+                    fontSize='16px'
+                    lineHeight='24px'
+                  >
+                    Home
+                  </Button>
+                  <InputGroup mt='24px'>
+                    <Input type='tel' placeholder='Search' />
+                    <InputRightElement children={<SearchIcon />} />
+                  </InputGroup>
+                </DrawerHeader>
+              </DrawerContent>
+            </Drawer>
           </Box>
         )}
       </HStack>
