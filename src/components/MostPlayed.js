@@ -1,14 +1,30 @@
-import { Box, Grid, VStack, Button, Center } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  VStack,
+  Button,
+  Center,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 
 import NewsHeading from "./UI/NewsHeading";
 import NewsList from "./News/NewsList";
 import NewsText from "./News/NewsText";
+import { useEffect, useState } from "react";
 
-function MainTop() {
-  const initURL =
-    "https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=12&pagination[page]=1";
+function MostPlayed() {
+  const [isMD] = useMediaQuery("(min-width: 768px)");
+  const [pageSize, setPageSize] = useState(12);
+  console.log(pageSize);
+
+  useEffect(() => {
+    if (!isMD) setPageSize(3);
+    else setPageSize(12);
+  }, [isMD]);
+
+  const initURL = `https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=${pageSize}&pagination[page]=1`;
   const fetchURL = async (url) => {
     const res = await axios.get(url);
     return res.data;
@@ -19,15 +35,21 @@ function MainTop() {
     ({ pageParam = initURL }) => fetchURL(pageParam),
     {
       getNextPageParam: (lastPage) => {
-        if (lastPage.meta.pagination.page === 2) return null;
+        const nextPage = lastPage.meta.pagination.page + 1;
+        if (
+          lastPage.meta.pagination.page * lastPage.meta.pagination.pageSize >
+          lastPage.meta.pagination.total
+        )
+          return null;
         else
-          return "https://demo.uats.site/api/uat-articles?pagination[pageSize]=12&pagination[page]=2&populate[0]=thumbnail";
+          return `https://demo.uats.site/api/uat-articles?pagination[pageSize]=${pageSize}&pagination[page]=${nextPage}&populate[0]=thumbnail`;
       },
     }
   );
 
   if (isLoading) return <div />;
   const news = data.pages.flatMap((arr) => arr.data).reverse();
+  console.log(data.pages[0].meta.pagination.pageSize);
 
   return (
     <Grid
@@ -38,7 +60,10 @@ function MainTop() {
         <NewsHeading />
         <NewsList
           news={news}
-          gridTemplateColumns='repeat(auto-fit,minmax(225px, 1fr))'
+          gridTemplateColumns={{
+            base: "",
+            md: "repeat(auto-fit,minmax(225px, 1fr))",
+          }}
         />
         {hasNextPage && (
           <Center mt='15px'>
@@ -68,4 +93,4 @@ function MainTop() {
   );
 }
 
-export default MainTop;
+export default MostPlayed;

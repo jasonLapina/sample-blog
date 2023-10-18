@@ -13,7 +13,7 @@ function FAQs() {
   };
   const { data, isLoading } = useQuery(["news", "faqs"], fetchFaqs);
   if (isLoading) return <div />;
-  console.log(data);
+
   return (
     <Box>
       <NewsHeading />

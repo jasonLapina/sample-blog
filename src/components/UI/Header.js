@@ -1,6 +1,7 @@
-import { SearchIcon } from "@chakra-ui/icons";
-import { Box, Center, HStack } from "@chakra-ui/react";
+import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
+import { Box, HStack, useMediaQuery } from "@chakra-ui/react";
 function Header() {
+  const [isMD] = useMediaQuery("(min-width: 768px)");
   return (
     <Box
       pos='sticky'
@@ -24,9 +25,16 @@ function Header() {
         <Box fontSize='20px' fontWeight='semibold' lineHeight='30px'>
           LOGO
         </Box>
-        <Box fontSize='16px' lineHeight='24px'>
-          Home <SearchIcon ml='16px' />
-        </Box>
+        {isMD && (
+          <Box fontSize='16px' lineHeight='24px'>
+            Home <SearchIcon ml='16px' />
+          </Box>
+        )}
+        {!isMD && (
+          <Box fontSize='24px' lineHeight='24px'>
+            <HamburgerIcon />
+          </Box>
+        )}
       </HStack>
     </Box>
   );
