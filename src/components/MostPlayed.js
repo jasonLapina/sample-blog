@@ -17,7 +17,6 @@ import { useEffect, useState } from "react";
 function MostPlayed() {
   const [isMD] = useMediaQuery("(min-width: 768px)");
   const [pageSize, setPageSize] = useState(12);
-  console.log(pageSize);
 
   useEffect(() => {
     if (!isMD) setPageSize(3);
@@ -49,7 +48,6 @@ function MostPlayed() {
 
   if (isLoading) return <div />;
   const news = data.pages.flatMap((arr) => arr.data).reverse();
-  console.log(data.pages[0].meta.pagination.pageSize);
 
   return (
     <Grid
