@@ -38,7 +38,13 @@ function Header() {
         px='16px'
         borderRadius='0 0 10px 10px'
       >
-        <Box fontSize='20px' fontWeight='semibold' lineHeight='30px'>
+        <Box
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          fontSize='20px'
+          fontWeight='semibold'
+          lineHeight='30px'
+          cursor='pointer'
+        >
           LOGO
         </Box>
         {isMD && (
