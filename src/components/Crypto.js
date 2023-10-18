@@ -26,7 +26,7 @@ function Crypto() {
   ];
 
   return (
-    <Grid gridTemplateColumns='6.6fr 3.4fr' gap='40px'>
+    <Grid gridTemplateColumns={{ base: "1fr", md: "6.6fr 3.4fr" }} gap='40px'>
       <Box>
         <NewsHeading>
           <Text
@@ -35,14 +35,19 @@ function Crypto() {
             fontSize='16px'
             lineHeight='24px'
             color='#626262'
-            w='680px'
+            // w='680px'
           >
             Competition is fierce in the online slots industry, with many big
             developers vying for players’ attention. Learn more about the top
             software providers below.
           </Text>
         </NewsHeading>
-        <HStack justify='center' gap='40px' alignItems='start'>
+        <HStack
+          flexDir={{ base: "column", md: "row" }}
+          justify='center'
+          gap='40px'
+          alignItems='start'
+        >
           {mainNews.map((item) => (
             <Box key={item.logo}>
               <Image mx='auto' aspectRatio='1/1' h='240px' src={item.logo} />

@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <Box maxW='1200px' mx='auto' py='80px'>
+      <Box mb='80px' maxW='1200px' mx='auto' p='12px'>
         <VStack align='normal' gap='70px'>
           <MainTop />
           <MostPlayed />

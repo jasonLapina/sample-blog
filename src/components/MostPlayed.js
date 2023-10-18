@@ -30,12 +30,15 @@ function MainTop() {
   const news = data.pages.flatMap((arr) => arr.data).reverse();
 
   return (
-    <Grid gridTemplateColumns='6.6fr 3.4fr' columnGap='40px'>
+    <Grid
+      gridTemplateColumns={{ base: "1fr", md: "6.6fr 3.4fr" }}
+      columnGap='40px'
+    >
       <Box>
         <NewsHeading />
         <NewsList
           news={news}
-          gridTemplateColumns='repeat(auto-fit,minmax(230px, 1fr))'
+          gridTemplateColumns='repeat(auto-fit,minmax(225px, 1fr))'
         />
         {hasNextPage && (
           <Center mt='15px'>
