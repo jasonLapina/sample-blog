@@ -49,7 +49,13 @@ function Header() {
         </Box>
         {isMD && (
           <Box fontSize='16px' lineHeight='24px'>
-            Home <SearchIcon ml='16px' />
+            <Button
+              variant='unstyled'
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              Home
+            </Button>
+            <SearchIcon ml='16px' />
           </Box>
         )}
         {!isMD && (
