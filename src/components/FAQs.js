@@ -47,7 +47,7 @@ function FAQs() {
           ))}
         {!isMD &&
           data.map((item) => (
-            <Accordion allowMultiple allowToggle key={item.id}>
+            <Accordion allowToggle key={item.id}>
               <AccordionItem borderTop='none' borderBottom='solid 2px #d1d1d1'>
                 <h2>
                   <AccordionButton fontWeight='bold'>

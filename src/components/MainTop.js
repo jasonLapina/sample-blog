@@ -9,19 +9,21 @@ function MainTop() {
 
   const getNews = async () => {
     const res = await axios.get(
-      "https://demo.uats.site/api/uat-articles?pagination[pageSize]=6&populate=*"
+      `https://demo.uats.site/api/uat-articles?pagination[pageSize]=${
+        isMD ? 6 : 3
+      }&populate=*`
     );
     return res.data.data;
   };
 
-  const { data, isLoading } = useQuery(["news", "MainTop"], getNews);
+  const { data, isLoading } = useQuery(["news", "MainTop", isMD], getNews);
 
   if (isLoading) return <div />;
 
   return (
     <Box>
       <NewsList
-        news={isMD ? data : data.slice(0, 3)}
+        news={data}
         gridTemplateColumns='repeat(auto-fit,minmax(350px, 1fr))'
       />
     </Box>

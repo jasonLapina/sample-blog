@@ -12,25 +12,20 @@ import axios from "axios";
 import NewsHeading from "./UI/NewsHeading";
 import NewsList from "./News/NewsList";
 import NewsText from "./News/NewsText";
-import { useEffect, useState } from "react";
 
 function MostPlayed() {
   const [isMD] = useMediaQuery("(min-width: 768px)");
-  const [pageSize, setPageSize] = useState(12);
 
-  useEffect(() => {
-    if (!isMD) setPageSize(3);
-    else setPageSize(12);
-  }, [isMD]);
-
-  const initURL = `https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=${pageSize}&pagination[page]=1`;
+  const initURL = `https://demo.uats.site/api/uat-articles?populate[0]=thumbnail&pagination[pageSize]=${
+    isMD ? 12 : 3
+  }&pagination[page]=1`;
   const fetchURL = async (url) => {
     const res = await axios.get(url);
     return res.data;
   };
 
   const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
-    ["news", "mostPlayed"],
+    ["news", "mostPlayed", isMD],
     ({ pageParam = initURL }) => fetchURL(pageParam),
     {
       getNextPageParam: (lastPage) => {
@@ -41,7 +36,9 @@ function MostPlayed() {
         )
           return null;
         else
-          return `https://demo.uats.site/api/uat-articles?pagination[pageSize]=${pageSize}&pagination[page]=${nextPage}&populate[0]=thumbnail`;
+          return `https://demo.uats.site/api/uat-articles?pagination[pageSize]=${
+            isMD ? 12 : 3
+          }&pagination[page]=${nextPage}&populate[0]=thumbnail`;
       },
     }
   );
